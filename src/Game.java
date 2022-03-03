@@ -10,17 +10,19 @@ public class Game extends Canvas implements Runnable {
     private boolean isRunning = false;
     private Handler handler;
     private Random r;
+    private HUD hud;
 
     private Game(){
 
         handler = new Handler();
+        hud = new HUD();
 
         new Window(WIDTH,HEIGHT,"FUNFO",this);
         this.addKeyListener(new KeyInput(handler));
             r = new Random();
             handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player));
             handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player2));
-            handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.enemy));
+            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.enemy));
 
 
     }
@@ -41,6 +43,7 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60;
         double ns = 1000000000 / amountOfTicks;
@@ -69,6 +72,7 @@ public class Game extends Canvas implements Runnable {
     }
     private void tick(){
         handler.tick();
+        hud.tick();
     }
     public void render(){
         BufferStrategy bufferStrategy = this.getBufferStrategy();
@@ -82,9 +86,19 @@ public class Game extends Canvas implements Runnable {
         graphics.fillRect(0,0,WIDTH, HEIGHT);
 
         handler.render(graphics);
+        hud.render(graphics);
+
 
         graphics.dispose();
         bufferStrategy.show();
+    }
+    public static int clamp(int var, int min, int max){
+        if (var >= max){
+            return var = max;
+        }else if(var<=min){
+            return var = min;
+        }
+        return var;
     }
 
     public static void main(String args[]){

@@ -1,12 +1,11 @@
-import javafx.scene.input.KeyCode;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.time.Clock;
+
 
 public class KeyInput extends KeyAdapter {
 
-    private Handler handler;
+    private final Handler handler;
 
     public KeyInput(Handler handler) {
         this.handler = handler;

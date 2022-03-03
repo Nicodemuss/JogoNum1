@@ -19,7 +19,8 @@ public class Player extends GameObject {
         x += velX;
         y += velY;
 
-
+        x = Game.clamp(x, 0, Game.WIDTH - 32);
+        y = Game.clamp(y, 0, Game.HEIGHT- 32);
     }
 
     @Override
@@ -28,10 +29,7 @@ public class Player extends GameObject {
             g.setColor(Color.green);
         }else if(id == Identity.player2){
             g.setColor(Color.CYAN);
-        } else{
-            g.setColor(Color.red);
         }
-
         g.fillRect(x,y,32,32);
     }
 }
