@@ -21,16 +21,16 @@ public class KeyInput extends KeyAdapter {
                 //key events for player1
 
                 if(key == KeyEvent.VK_W){
-                    object.setVelY(-1);
+                    object.setVelY(-2);
                 }
                 if(key == KeyEvent.VK_S){
-                    object.setVelY(1);
+                    object.setVelY(2);
                 }
                 if(key == KeyEvent.VK_D){
-                    object.setVelX(1);
+                    object.setVelX(2);
                 }
                 if(key == KeyEvent.VK_A){
-                    object.setVelX(-1);
+                    object.setVelX(-2);
                 }
 
             }

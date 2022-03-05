@@ -20,10 +20,13 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH,HEIGHT,"FUNFO",this);
         this.addKeyListener(new KeyInput(handler));
             r = new Random();
-            handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player));
-            handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player2));
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.enemy));
+            handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player, handler));
+            //handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player2,handler));
 
+        for(int i = 0; i<15;i++){
+            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.enemy,16,16, handler));
+
+        }
 
     }
 
@@ -82,7 +85,7 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
-        graphics.setColor(Color.GRAY);
+        graphics.setColor(Color.black);
         graphics.fillRect(0,0,WIDTH, HEIGHT);
 
         handler.render(graphics);

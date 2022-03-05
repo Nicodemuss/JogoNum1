@@ -2,10 +2,17 @@ import java.awt.*;
 
 public class HUD {
 
-    public void tick(){}
+    protected static int HEALTH = 100;
+
+
+    public void tick(){
+        HEALTH = Game.clamp(HEALTH, 0, 1000);
+    }
     public void render(Graphics g){
+        g.setColor(Color.darkGray);
+        g.fillRect(15,15,200,20);
         g.setColor(Color.green);
-        g.fill3DRect(15,15,200,20,false);
+        g.fillRect(15,15,HEALTH * 2,20);
     }
 
 
