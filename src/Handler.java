@@ -6,7 +6,7 @@ public class Handler {
     LinkedList <GameObject> gameObjects = new LinkedList<>();
 
     public void tick(){
-        // aqui é necessário um for desse jeito, um forEach da erro quando são inseridas as trails
+        // it has to be this kind of for, a ForEach won't work
         for(int i = 0; i < gameObjects.size();i++){
             GameObject tempObject = gameObjects.get(i);
             tempObject.tick();

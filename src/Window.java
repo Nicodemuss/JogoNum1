@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-//essa classe basicamente faz com que o jogo tenha uma janela
+//creates Game window
 public class Window extends Canvas {
 
     private static final Long SerialID = -21545411335L;
@@ -13,11 +13,10 @@ public class Window extends Canvas {
         frame.setMaximumSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
 
-        //faz o "X" de fechar funcionar
+        //makes the "X" button actually close the program
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //aparentemente redimensionar a tela é dificil, bota falso
         frame.setResizable(false);
-        //desnecessario, mas isso faz começar no meio da tela, caso contrario, iria começar no canto esquerdo superior
+        //starts the game in the middle of the screen
         frame.setLocationRelativeTo(null);
 
         frame.add(game);

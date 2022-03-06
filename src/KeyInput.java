@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
 
     private final Handler handler;
+    private static int  VELOCIDADE = 3;
 
     public KeyInput(Handler handler) {
         this.handler = handler;
@@ -21,16 +22,16 @@ public class KeyInput extends KeyAdapter {
                 //key events for player1
 
                 if(key == KeyEvent.VK_W){
-                    object.setVelY(-2);
+                    object.setVelY(-VELOCIDADE);
                 }
                 if(key == KeyEvent.VK_S){
-                    object.setVelY(2);
+                    object.setVelY(VELOCIDADE);
                 }
                 if(key == KeyEvent.VK_D){
-                    object.setVelX(2);
+                    object.setVelX(VELOCIDADE);
                 }
                 if(key == KeyEvent.VK_A){
-                    object.setVelX(-2);
+                    object.setVelX(-VELOCIDADE);
                 }
 
             }

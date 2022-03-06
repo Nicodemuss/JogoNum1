@@ -1,22 +1,17 @@
 import java.awt.*;
 
-public class BasicEnemy extends GameObject{
+public class FastEnemy extends GameObject{
 
     private Handler handler;
-    private int width;
-    private int height;
-    private static int DAMAGE = 2;
+    private int width = 10;
+    private int height = 10;
+    private static int DAMAGE = 1;
 
-
-
-    public BasicEnemy(int x, int y, Identity id, int width, int height, Handler handler) {
+    public FastEnemy(int x, int y, Identity id,  Handler handler) {
         super(x, y, id);
-        this.width = width;
-        this.height = height;
         this.handler = handler;
-
-        velX = 3;
-        velY = 3;
+        velX = 10;
+        velY = 8;
     }
 
 
@@ -32,8 +27,8 @@ public class BasicEnemy extends GameObject{
         colission();
 
         //the smaller the "life", the longer the trail
-//        Trail trail = new Trail(x,y,Identity.trail, Color.red,width,height,0.10f,handler);
-//      handler.addObject(trail);
+//        Trail trail = new Trail(x,y,Identity.trail, Color.yellow,width,height,0.10f,handler);
+//        handler.addObject(trail);
 
     }
     private void colission(){
@@ -48,7 +43,7 @@ public class BasicEnemy extends GameObject{
 
 
     public void render( Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(Color.yellow);
         g.fillRect(x,y,width,height);
     }
 

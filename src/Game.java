@@ -4,29 +4,34 @@ import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 640, HEIGHT = WIDTH/12*9;
+    public static final int WIDTH = 1440, HEIGHT = WIDTH/12*9;
 
     private Thread thread;
     private boolean isRunning = false;
     private Handler handler;
     private Random r;
     private HUD hud;
+    private Spawn spawn;
 
     private Game(){
 
         handler = new Handler();
         hud = new HUD();
+        spawn = new Spawn(handler, hud);
+
 
         new Window(WIDTH,HEIGHT,"FUNFO",this);
         this.addKeyListener(new KeyInput(handler));
             r = new Random();
             handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player, handler));
             //handler.addObject(new Player(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.player2,handler));
+         //   handler.addObject(new FastEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.fastEnemy, handler));
+        //handler.addObject(new SlowEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.slowEnemy, handler));
 
-        for(int i = 0; i<15;i++){
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.enemy,16,16, handler));
-
-        }
+//        for(int i = 0; i<100;i++){
+//            handler.addObject(new FastEnemy(r.nextInt(WIDTH - 50),r.nextInt(HEIGHT-50),Identity.enemy, handler));
+//
+//        }
 
     }
 
@@ -76,6 +81,7 @@ public class Game extends Canvas implements Runnable {
     private void tick(){
         handler.tick();
         hud.tick();
+        spawn.tick();
     }
     public void render(){
         BufferStrategy bufferStrategy = this.getBufferStrategy();

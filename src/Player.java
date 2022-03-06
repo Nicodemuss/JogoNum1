@@ -6,6 +6,8 @@ public class Player extends GameObject {
 
     private Random r;
     private Handler handler;
+    private int width = 32;
+    private int height = 32;
 
     public Player(int x, int y, Identity id, Handler handler) {
         super(x, y, id);
@@ -17,7 +19,7 @@ public class Player extends GameObject {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x,y,32,32);
+        return new Rectangle(x,y,width,height);
     }
 
     @Override
@@ -26,9 +28,11 @@ public class Player extends GameObject {
         x += velX;
         y += velY;
 
-        x = Game.clamp(x, 0, Game.WIDTH - 32);
-        y = Game.clamp(y, 0, Game.HEIGHT- 32);
+        x = Game.clamp(x, 0, Game.WIDTH - width);
+        y = Game.clamp(y, 0, Game.HEIGHT- height);
        // colission();
+        Trail trail = new Trail(x,y,Identity.trail, Color.green,width,height,0.10f,handler);
+        handler.addObject(trail);
     }
 //    private void colission(){
 //         for(GameObject object: handler.gameObjects){
