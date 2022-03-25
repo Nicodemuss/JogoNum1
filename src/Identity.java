@@ -4,5 +4,6 @@ public enum Identity {
     enemy(),
     fastEnemy(),
     slowEnemy,
+    smartEnemy(),
     trail();
 }

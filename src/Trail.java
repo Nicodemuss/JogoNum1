@@ -3,11 +3,11 @@ import java.awt.*;
 public class Trail extends GameObject {
 
     private Handler handler;
-    private int width,height;
+    private float width,height;
     private float alpha = 1, life;
     private Color color;
 
-    public Trail(int x, int y, Identity id, Color color, int width, int height, float life, Handler handler) {
+    public Trail(float x, float y, Identity id, Color color, float width, float height, float life, Handler handler) {
         super(x, y, id);
         this.color = color;
         this.width = width;
@@ -30,7 +30,7 @@ public class Trail extends GameObject {
         g2d.setComposite(makeTrasparent(alpha));
 
         g.setColor(color);
-        g.fillRect(x,y,width,height);
+        g.fillRect((int) x, (int) y, (int) width,(int) height);
 
         g2d.setComposite(makeTrasparent(1));
     }

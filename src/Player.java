@@ -6,10 +6,10 @@ public class Player extends GameObject {
 
     private Random r;
     private Handler handler;
-    private int width = 32;
-    private int height = 32;
+    private float width = 32;
+    private float height = 32;
 
-    public Player(int x, int y, Identity id, Handler handler) {
+    public Player(float x, float y, Identity id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
 //        r = new Random();
@@ -19,7 +19,7 @@ public class Player extends GameObject {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x,y,width,height);
+        return new Rectangle((int) x, (int) y, (int) width,(int) height);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Player extends GameObject {
             g.setColor(Color.CYAN);
         }
         g2d.draw(getBounds());
-        g.fillRect(x,y,32,32);
+        g.fillRect((int) x, (int) y, (int) width,(int) height);
     }
 
 

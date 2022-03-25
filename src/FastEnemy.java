@@ -3,8 +3,8 @@ import java.awt.*;
 public class FastEnemy extends GameObject{
 
     private Handler handler;
-    private int width = 10;
-    private int height = 10;
+    private float width = 10;
+    private float height = 10;
     private static int DAMAGE = 1;
 
     public FastEnemy(int x, int y, Identity id,  Handler handler) {
@@ -27,8 +27,8 @@ public class FastEnemy extends GameObject{
         colission();
 
         //the smaller the "life", the longer the trail
-//        Trail trail = new Trail(x,y,Identity.trail, Color.yellow,width,height,0.10f,handler);
-//        handler.addObject(trail);
+        Trail trail = new Trail(x,y,Identity.trail, Color.yellow,width,height,0.10f,handler);
+        handler.addObject(trail);
 
     }
     private void colission(){
@@ -44,11 +44,11 @@ public class FastEnemy extends GameObject{
 
     public void render( Graphics g) {
         g.setColor(Color.yellow);
-        g.fillRect(x,y,width,height);
+        g.fillRect((int) x, (int) y, (int) width,(int) height);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x,y,width,height);
+        return new Rectangle((int) x, (int) y, (int) width,(int) height);
     }
 }

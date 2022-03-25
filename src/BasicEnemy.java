@@ -3,13 +3,13 @@ import java.awt.*;
 public class BasicEnemy extends GameObject{
 
     private Handler handler;
-    private int width;
-    private int height;
+    private float width;
+    private float height;
     private static int DAMAGE = 2;
 
 
 
-    public BasicEnemy(int x, int y, Identity id, int width, int height, Handler handler) {
+    public BasicEnemy(float x, float y, Identity id, float width, float height, Handler handler) {
         super(x, y, id);
         this.width = width;
         this.height = height;
@@ -32,8 +32,8 @@ public class BasicEnemy extends GameObject{
         colission();
 
         //the smaller the "life", the longer the trail
-//        Trail trail = new Trail(x,y,Identity.trail, Color.red,width,height,0.10f,handler);
-//      handler.addObject(trail);
+        Trail trail = new Trail(x,y,Identity.trail, Color.red,width,height,0.10f,handler);
+      handler.addObject(trail);
 
     }
     private void colission(){
@@ -49,11 +49,11 @@ public class BasicEnemy extends GameObject{
 
     public void render( Graphics g) {
         g.setColor(Color.red);
-        g.fillRect(x,y,width,height);
+        g.fillRect((int) x, (int) y, (int) width,(int) height);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x,y,width,height);
+        return new Rectangle((int) x, (int) y, (int) width,(int) height);
     }
 }

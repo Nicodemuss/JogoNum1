@@ -1,17 +1,19 @@
 import java.awt.*;
 
-public class SlowEnemy extends GameObject{
-
+public class SmartEnemy extends GameObject {
     private Handler handler;
-    private float width = 50;
-    private float height = 50;
-    private static int DAMAGE = 5;
+    private Player player;
+    private float width = 20;
+    private float height = 20;
+    private static int DAMAGE = 1;
 
-    public SlowEnemy(float x, float y, Identity id,  Handler handler) {
+    public SmartEnemy(int x, int y, Identity id,  Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX = 1;
-        velY = 1;
+
+        for( GameObject object : this.handler.gameObjects){
+            if(object.getId() == Identity.player) player = (Player) object;
+        }
     }
 
 
@@ -26,8 +28,15 @@ public class SlowEnemy extends GameObject{
         }
         colission();
 
+        float diffX = player.getX() - x;
+        float diffY = player.getY() - y;
+        float distance = (float)(Math.sqrt((x - player.getX())*(x - player.getX()) + (y - player.getY())*(y - player.getY())));
+
+        velY = (2/distance)*diffY;
+        velX = (2/distance)*diffX;
+
         //the smaller the "life", the longer the trail
-        Trail trail = new Trail(x,y,Identity.trail, new Color(150,100,255),width,height,0.05f,handler);
+        Trail trail = new Trail(x,y,Identity.trail, Color.yellow,width,height,0.10f,handler);
         handler.addObject(trail);
 
     }
@@ -43,7 +52,7 @@ public class SlowEnemy extends GameObject{
 
 
     public void render( Graphics g) {
-        g.setColor(new Color(55,0,255));
+        g.setColor(Color.MAGENTA);
         g.fillRect((int) x, (int) y, (int) width,(int) height);
     }
 
@@ -52,3 +61,5 @@ public class SlowEnemy extends GameObject{
         return new Rectangle((int) x, (int) y, (int) width,(int) height);
     }
 }
+
+
