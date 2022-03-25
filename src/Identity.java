@@ -5,5 +5,6 @@ public enum Identity {
     fastEnemy(),
     slowEnemy,
     smartEnemy(),
+    healthPack(),
     trail();
 }

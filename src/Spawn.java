@@ -18,20 +18,25 @@ public class Spawn {
         scoreCount++;
         hud.setScore(scoreKeep);
         r =new Random();
-        if(scoreCount >= 100 ){
+        if(scoreCount >= 100 & hud.getLevel()<10){
             scoreCount = 0;
             hud.setLevel(hud.getLevel()+1);
             handler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.fastEnemy, handler));
 
             //handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.enemy,16,16, handler));
 
-        }else if(scoreCount >= 100 & hud.getLevel()>10 ){
+        }else if(scoreCount >= 100){
             scoreCount = 0;
             hud.setLevel(hud.getLevel()+1);
 //            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.enemy,16,16, handler));
 //            handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.fastEnemy, handler));
 //            handler.addObject(new SlowEnemy(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.slowEnemy, handler));
             handler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.fastEnemy, handler));
+
+        }
+        if(hud.getLevel()%5==0 & scoreCount == 0){
+
+            handler.addObject(new HealthPack(r.nextInt(Game.WIDTH - 50),r.nextInt(Game.HEIGHT-50),Identity.fastEnemy, handler));
 
         }
     }
