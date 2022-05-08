@@ -31,6 +31,11 @@ public class HealthPack extends GameObject{
         return new Rectangle((int) x, (int) y, (int) width,(int) height);
     }
 
+    @Override
+    public void shoot() {
+
+    }
+
     private void colission(){
         //for(GameObject object: handler.gameObjects){
 
@@ -38,7 +43,7 @@ public class HealthPack extends GameObject{
             GameObject object = handler.gameObjects.get(i);
             if(object.getId() == Identity.player){
                 if(getBounds().intersects(object.getBounds())){
-                    HUD.HEALTH += 30;
+                    HUD.HEALTH += 50;
                     handler.removeObject(this);
                 }
             }

@@ -13,8 +13,8 @@ public class Handler {
         }
     }
     public void render(Graphics g){
-        for(GameObject gGraph: gameObjects){
-           GameObject tempObject = gGraph;
+        for(int i = 0; i < gameObjects.size();i++){
+           GameObject tempObject = gameObjects.get(i);
            tempObject.render(g);
         }
     }
@@ -23,5 +23,14 @@ public class Handler {
     }
     public void removeObject(GameObject obj){
         this.gameObjects.remove(obj);
+    }
+    public void removeEnemies(){
+        for(int i = 0; i < gameObjects.size();i++){
+            GameObject obj = gameObjects.get(i);
+            if(obj.getId() != Identity.player & obj.getId() != Identity.healthPack & obj.getId() != Identity.trail){
+               removeObject(obj);
+        }
+
+        }
     }
 }

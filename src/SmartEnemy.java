@@ -16,7 +16,6 @@ public class SmartEnemy extends GameObject {
         }
     }
 
-
     public void tick() {
         x += velX;
         y += velY;
@@ -37,7 +36,7 @@ public class SmartEnemy extends GameObject {
 
         //the smaller the "life", the longer the trail
         Trail trail = new Trail(x,y,Identity.trail, Color.yellow,width,height,0.10f,handler);
-        handler.addObject(trail);
+        //handler.addObject(trail);
 
     }
     private void colission(){
@@ -59,6 +58,11 @@ public class SmartEnemy extends GameObject {
     @Override
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, (int) width,(int) height);
+    }
+
+    @Override
+    public void shoot() {
+
     }
 }
 

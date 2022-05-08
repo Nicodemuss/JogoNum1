@@ -44,4 +44,9 @@ public class Trail extends GameObject {
     public Rectangle getBounds() {
         return null;
     }
+
+    @Override
+    public void shoot() {
+
+    }
 }

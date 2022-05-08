@@ -6,5 +6,9 @@ public enum Identity {
     slowEnemy,
     smartEnemy(),
     healthPack(),
+    eaterAsal,
+    playerProjectile,
+    enemyProjectile,
     trail();
+
 }

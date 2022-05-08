@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 1440, HEIGHT = WIDTH/12*9;
+    public static final int WIDTH = 1240, HEIGHT = WIDTH/12*9;
 
     private Thread thread;
     private boolean isRunning = false;

@@ -9,7 +9,7 @@ public class KeyInput extends KeyAdapter {
     private static float  VELOCIDADE = 3;
 
     // if more commands or a second player are to be added, this array should be increased, or a separate array should be created for player two
-    private boolean[] keyDown = new boolean[4];
+    private boolean[] keyDown = new boolean[5];
 
     public KeyInput(Handler handler) {
         this.handler = handler;
@@ -18,11 +18,11 @@ public class KeyInput extends KeyAdapter {
     //it has to be called keyPressed, or else, it won't work
     public void keyPressed(KeyEvent e){
         int key = e.getKeyCode();
-        for( GameObject object : this.handler.gameObjects){
-                //GameObject object = handler.gameObjects.get(i);
+        for( int i = 0; i< handler.gameObjects.size(); i++){
+                GameObject object = handler.gameObjects.get(i);
 
+            //key events for player1
             if (object.getId() == Identity.player){
-                //key events for player1
 
                 if(key == KeyEvent.VK_W){
                     object.setVelY(-VELOCIDADE);
@@ -42,6 +42,9 @@ public class KeyInput extends KeyAdapter {
                     object.setVelX(-VELOCIDADE);
                     keyDown[3] = true;
 
+                }
+                if (key  == KeyEvent.VK_SPACE){
+                    object.shoot();
                 }
 
             }
@@ -72,8 +75,8 @@ public class KeyInput extends KeyAdapter {
     }
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
-        for( GameObject object : this.handler.gameObjects){
-            //GameObject object = handler.gameObjects.get(i);
+        for(  int i = 0; i< handler.gameObjects.size(); i++){
+            GameObject object = handler.gameObjects.get(i);
 
             if (object.getId() == Identity.player){
                 //key events for player1

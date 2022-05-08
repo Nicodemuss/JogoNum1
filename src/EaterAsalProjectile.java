@@ -1,17 +1,26 @@
 import java.awt.*;
+import java.util.Random;
 
-public class SlowEnemy extends GameObject{
-
+public class EaterAsalProjectile extends GameObject {
     private Handler handler;
-    private float width = 50;
-    private float height = 50;
-    private static int DAMAGE = 5;
+    private float width;
+    private float height;
+    private static int DAMAGE = 2;
+    private Random r;
+    private int velX;
+    private int velY;
+    protected static float Boss1Health = 100;
 
-    public SlowEnemy(float x, float y, Identity id,  Handler handler) {
+
+
+    public EaterAsalProjectile(float x, float y, Identity id, float width, float height, Handler handler, int velX, int velY) {
         super(x, y, id);
+        this.width = width;
+        this.height = height;
         this.handler = handler;
-        velX = 1;
-        velY = 1;
+
+        this.velX = velX;
+        this.velY = velY;
     }
 
 
@@ -19,20 +28,21 @@ public class SlowEnemy extends GameObject{
         x += velX;
         y += velY;
         if(x >= Game.WIDTH - 32 || x<=0){
-            velX = velX*-1;
+            handler.removeObject(this);
         }
         if(y >= Game.HEIGHT - 64 || y<=0){
-            velY = velY*-1;
+            handler.removeObject(this);
         }
         colission();
 
         //the smaller the "life", the longer the trail
-        Trail trail = new Trail(x,y,Identity.trail, new Color(150,100,255),width,height,0.05f,handler);
+        Trail trail = new Trail(x,y,Identity.trail, Color.red,width,height,0.20f,handler);
         handler.addObject(trail);
 
     }
     private void colission(){
-        for(GameObject object: handler.gameObjects){
+        for(int i =0 ;i< handler.gameObjects.size(); i++){
+            GameObject object = handler.gameObjects.get(i);
             if(object.getId() == Identity.player){
                 if(getBounds().intersects(object.getBounds())){
                     HUD.HEALTH -= DAMAGE;
@@ -43,8 +53,9 @@ public class SlowEnemy extends GameObject{
 
 
     public void render( Graphics g) {
-        g.setColor(new Color(55,0,255));
+        g.setColor(Color.red);
         g.fillRect((int) x, (int) y, (int) width,(int) height);
+
     }
 
     @Override

@@ -23,6 +23,11 @@ public class Player extends GameObject {
     }
 
     @Override
+    public void shoot() {
+        handler.addObject(new PlayerProjectile(x-10,y-10,Identity.playerProjectile,16,16, handler,0, -5));
+    }
+
+    @Override
     public void tick() {
 
         x += velX;

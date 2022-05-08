@@ -2,10 +2,11 @@ import java.awt.*;
 
 public class HUD {
 
-    protected static float HEALTH = 100;
+    protected static float HEALTH = 150;
     private int green = 255;
     private  int score = 0;
     private int level = 1;
+
 
 
     public void tick(){

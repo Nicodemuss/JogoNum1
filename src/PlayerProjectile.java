@@ -1,22 +1,25 @@
 import java.awt.*;
+import java.util.Random;
 
-public class BasicEnemy extends GameObject{
-
+public class PlayerProjectile extends GameObject {
     private Handler handler;
     private float width;
     private float height;
-    private static int DAMAGE = 2;
+    private static int DAMAGE = 1;
+    private Random r;
+    private int velX;
+    private int velY;
 
 
 
-    public BasicEnemy(float x, float y, Identity id, float width, float height, Handler handler) {
+    public PlayerProjectile(float x, float y, Identity id, float width, float height, Handler handler, int velX, int velY) {
         super(x, y, id);
         this.width = width;
         this.height = height;
         this.handler = handler;
 
-        velX = 3;
-        velY = 3;
+        this.velX = velX;
+        this.velY = velY;
     }
 
 
@@ -24,31 +27,34 @@ public class BasicEnemy extends GameObject{
         x += velX;
         y += velY;
         if(x >= Game.WIDTH - 32 || x<=0){
-            velX = velX*-1;
+            handler.removeObject(this);
         }
         if(y >= Game.HEIGHT - 64 || y<=0){
-            velY = velY*-1;
+            handler.removeObject(this);
         }
         colission();
 
         //the smaller the "life", the longer the trail
-        Trail trail = new Trail(x,y,Identity.trail, Color.red,width,height,0.10f,handler);
-      //handler.addObject(trail);
+        //Trail trail = new Trail(x,y,Identity.trail, (new Color(222,255,150)),width,height,0.10f,handler);
+       // handler.addObject(trail);
 
     }
     private void colission(){
-        for(GameObject object: handler.gameObjects){
-            if(object.getId() == Identity.player){
+        for(int i =0 ;i< handler.gameObjects.size(); i++){
+            GameObject object = handler.gameObjects.get(i);
+            if(object.getId() == Identity.eaterAsal){
                 if(getBounds().intersects(object.getBounds())){
-                    HUD.HEALTH -= DAMAGE;
+                    EaterAsal.Boss1Health -= DAMAGE;
+                    System.out.println("certo");
                 }
             }
         }
+
     }
 
 
     public void render( Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(new Color(222,255,150));
         g.fillRect((int) x, (int) y, (int) width,(int) height);
     }
 
@@ -62,3 +68,4 @@ public class BasicEnemy extends GameObject{
 
     }
 }
+
